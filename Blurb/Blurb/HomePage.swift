@@ -15,6 +15,10 @@ struct Blab {
     let timeStamp : String
 }
 
+func == (a: Blab, b: Blab) -> Bool {
+    return a.username == b.username && a.blabString == b.blabString && a.timeStamp == b.timeStamp
+}
+
 let user = "Nagoogin"
 
 class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -35,6 +39,7 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     var blabList = [testBlab1, testBlab2, testBlab3, testBlab4]
+    var userBlabList = [testBlab2]
     
     // This function returns a string for the date given an NSDate date
     func getTimeStamp(date: NSDate) -> String {
@@ -49,8 +54,11 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             // Saves the time of blab submission
             let username = user
             let currentTime = NSDate()
+            let newBlab = Blab(username: username, blabString: blabTextField.text!, timeStamp: getTimeStamp(currentTime))
             // Appends a new Blab object to the blabList array
-            blabList.insert(Blab(username: username, blabString: blabTextField.text!, timeStamp: getTimeStamp(currentTime)), atIndex: 0)
+            blabList.insert(newBlab, atIndex: 0)
+            userBlabList.insert(newBlab, atIndex: 0)
+            
             // Sets the textField back to empty view
             blabTextField.text = ""
             
@@ -58,6 +66,8 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.blabTableView.reloadData()
             })
+            
+            dismissKeyboard()
             
             // DELETE THIS PRIOR TO DEPLOYMENT, OR ELSE, RIP
             print(blabList)
@@ -73,6 +83,13 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         blurbButton.layer.cornerRadius = 5
 
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HomePage.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,6 +106,7 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         blabbedCell.usernameLabel.text = blabList[indexPath.row].username
         blabbedCell.blabLabel.text = blabList[indexPath.row].blabString
+        
         if blabList[indexPath.row].username == user {
             // If you are the poster, then the text of the blab is in medium weight and app green
             blabbedCell.blabLabel.textColor = UIColor(red:0.0, green:0.545, blue:0.271, alpha:1.0)
@@ -97,6 +115,16 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             blabbedCell.blabLabel.textColor = UIColor.blackColor()
             blabbedCell.blabLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
         }
+        
+        // Checks if cell is the first of the user's blabs, then highlight it in green. It's too bad this control flow block has to be separate from the one above because otherwise it won't exhaustively check all the cells.
+        
+        if blabList[indexPath.row] == userBlabList[0] {
+            blabbedCell.backgroundColor = UIColor(red: 0.867, green: 0.988, blue: 0.867, alpha: 1.0)
+        } else {
+            blabbedCell.backgroundColor = UIColor.whiteColor()
+        }
+
+        
         blabbedCell.timeStampLabel.text = blabList[indexPath.row].timeStamp
         
         return blabbedCell
