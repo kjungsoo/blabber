@@ -18,3 +18,21 @@ Why it could be succesful:
 * easy to make achievements and reward users for blabbing
 * easy to create huge blab reactions
 * no 'like' button or 'reblog' button but instead a victom/infected count from causing reactions which can be an indication to a 'like' or popularity, for example Kevin blabs and Rob and I blab in response which will give Kevin an infection count of 2. In this way there is no need for a 'reply' function because each resulting blab is caused by the original blab and creates a chain/web of blabs that can be trace back to the origin or to one of the many resulting blabs.
+
+##Mini Events
+Daily:
+* 
+* 
+
+Weekly:
+Disease stories:
+* Basic idea: someone starts with a 1 word blab and people add 1 word blab at a time to make a story
+* Kevin's plan is to adapt it to disease idea, starts with 1 word which branches to multiple different stories that people vote on for the best resulting story
+
+Random:
+Blabbing zombies
+* When a user gets randomly tagged as a "zombie" (probably by us/admins), any other users that interact with the zombie blab in some form (maybe blabbing in response or blabbing right after a zombie blabbed in a mini-event), the user will get "zombified" and will create a virtual zombie vs human survival blab war
+
+High Score/Achievements:
+Blabbing Away
+*
