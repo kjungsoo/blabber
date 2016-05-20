@@ -18,6 +18,8 @@
 		9D9769B31CE55718000A7EE8 /* NotificationsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9769B21CE55718000A7EE8 /* NotificationsPage.swift */; };
 		9D9769B51CE55732000A7EE8 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9769B41CE55732000A7EE8 /* ProfilePage.swift */; };
 		9D9769B71CE5A815000A7EE8 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9769B61CE5A815000A7EE8 /* LoginPage.swift */; };
+		9DD80E421CE93E4500D0BA10 /* blabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD80E411CE93E4500D0BA10 /* blabCell.swift */; };
+		9DF5A2E81CEE97A800D0FBE8 /* TestGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF5A2E71CEE97A800D0FBE8 /* TestGlobals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		9D9769B21CE55718000A7EE8 /* NotificationsPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsPage.swift; sourceTree = "<group>"; };
 		9D9769B41CE55732000A7EE8 /* ProfilePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		9D9769B61CE5A815000A7EE8 /* LoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		9DD80E411CE93E4500D0BA10 /* blabCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = blabCell.swift; sourceTree = "<group>"; };
+		9DF5A2E71CEE97A800D0FBE8 /* TestGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGlobals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +73,12 @@
 				9D9769991CE54B76000A7EE8 /* AppDelegate.swift */,
 				9D97699B1CE54B76000A7EE8 /* ViewController.swift */,
 				9D97699D1CE54B76000A7EE8 /* Main.storyboard */,
+				9DD80E411CE93E4500D0BA10 /* blabCell.swift */,
 				9D9769B61CE5A815000A7EE8 /* LoginPage.swift */,
 				9D9769B21CE55718000A7EE8 /* NotificationsPage.swift */,
 				9D9769B41CE55732000A7EE8 /* ProfilePage.swift */,
 				9D9769AE1CE54FD9000A7EE8 /* HomePage.swift */,
+				9DF5A2E71CEE97A800D0FBE8 /* TestGlobals.swift */,
 				9D9769B01CE5562D000A7EE8 /* ExplorePage.swift */,
 				9D9769A31CE54B76000A7EE8 /* Assets.xcassets */,
 				9D9769A51CE54B76000A7EE8 /* LaunchScreen.storyboard */,
@@ -153,7 +159,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DF5A2E81CEE97A800D0FBE8 /* TestGlobals.swift in Sources */,
 				9D9769B71CE5A815000A7EE8 /* LoginPage.swift in Sources */,
+				9DD80E421CE93E4500D0BA10 /* blabCell.swift in Sources */,
 				9D97699C1CE54B76000A7EE8 /* ViewController.swift in Sources */,
 				9D9769A21CE54B76000A7EE8 /* Blurb.xcdatamodeld in Sources */,
 				9D97699A1CE54B76000A7EE8 /* AppDelegate.swift in Sources */,
@@ -310,6 +318,7 @@
 				9D9769AD1CE54B76000A7EE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
