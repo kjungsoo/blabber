@@ -12,10 +12,14 @@ class LoginPage: UIViewController {
 
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var signUpButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loginButton.layer.cornerRadius = 5
+        
+        signUpButton.layer.cornerRadius = 5
     
         // Do any additional setup after loading the view, typically from a nib.
     }
