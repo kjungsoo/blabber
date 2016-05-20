@@ -5,6 +5,7 @@ Blabs, blurbs, and musings from your mind
 * Create a unqiue logo and app icon.
 * Find or make better icons in the app.
 * Find a theme to make app unique and interesting
+* hook up firebase or some other free database
 
 A potential idea I (Jung) thought of was a disease idea which I'll explain...
 
