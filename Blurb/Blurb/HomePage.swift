@@ -8,15 +8,8 @@
 
 import UIKit
 
-// Blab struct defined a blab: blabString, timeStamp,
-struct Blab {
-    let username : String
-    let blabString : String
-    let timeStamp : String
-}
-
 func == (a: Blab, b: Blab) -> Bool {
-    return a.username == b.username && a.blabString == b.blabString && a.timeStamp == b.timeStamp
+    return a.username == b.username && a.blabString == b.blabString && a.time == b.time
 }
 
 let user = "Nagoogin"
@@ -45,8 +38,43 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func getTimeStamp(date: NSDate) -> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = .ShortStyle
-        dateFormatter.timeStyle = .ShortStyle
         return dateFormatter.stringFromDate(date)
+    }
+    
+    let refreshControl = UIRefreshControl()
+    
+    func updateTimeStamp(time: NSDate) -> String {
+        let currentTime = NSDate()
+        let timeInterval = currentTime.timeIntervalSinceDate(time)
+        let timeStamp : String
+        if timeInterval < 3600 {
+            if Int(timeInterval) < 60 {
+                if Int(timeInterval) == 1 {
+                    timeStamp = "1 second ago"
+                } else {
+                    timeStamp = String(Int(timeInterval)) + " seconds ago"
+                }
+            } else if Int(timeInterval / 60) == 1 {
+                timeStamp =  "1 minute ago"
+            } else {
+                timeStamp = String(Int(timeInterval / 60)) + " minutes ago"
+            }
+        } else if Int(timeInterval) < 86400 {
+            if Int(timeInterval / 3600) == 1 {
+                timeStamp = "1 hour ago"
+            } else {
+                timeStamp = String(Int(timeInterval / 3600)) + " hours ago"
+            }
+        } else if Int(timeInterval) < 604800 {
+            if Int(timeInterval / 86400) == 1 {
+                timeStamp = "1 day ago"
+            } else {
+                timeStamp = String(Int(timeInterval / 86400)) + " days ago"
+            }
+        } else {
+            timeStamp = getTimeStamp(time)
+        }
+        return timeStamp
     }
     
     @IBAction func blabButtonAction(sender: AnyObject) {
@@ -54,7 +82,7 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             // Saves the time of blab submission
             let username = user
             let currentTime = NSDate()
-            let newBlab = Blab(username: username, blabString: blabTextField.text!, timeStamp: getTimeStamp(currentTime))
+            let newBlab = Blab(username: username, blabString: blabTextField.text!, time: currentTime)
             // Appends a new Blab object to the blabList array
             blabList.insert(newBlab, atIndex: 0)
             userBlabList.insert(newBlab, atIndex: 0)
@@ -63,9 +91,9 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             blabTextField.text = ""
             
             // Updates the table view with the new added row
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.blabTableView.reloadData()
-            })
+            //dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.blabTableView.reloadData()
+            //})
             
             dismissKeyboard()
             
@@ -81,11 +109,23 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         homePageNavBar.topItem!.title = "Home Feed"
         
         blurbButton.layer.cornerRadius = 5
+        
+        self.refreshControl.addTarget(self, action: #selector(HomePage.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
 
+        self.blabTableView.addSubview(self.refreshControl)
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HomePage.dismissKeyboard))
         view.addGestureRecognizer(tap)
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        print("hello")
+        // Need to add call to function that retrieves newest blabs from database
+        
+        self.blabTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func dismissKeyboard() {
@@ -125,7 +165,7 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         
-        blabbedCell.timeStampLabel.text = blabList[indexPath.row].timeStamp
+        blabbedCell.timeStampLabel.text = updateTimeStamp(blabList[indexPath.row].time)
         
         return blabbedCell
     }
