@@ -9,7 +9,7 @@
 import UIKit
 
 func == (a: Blab, b: Blab) -> Bool {
-    return a.username == b.username && a.blabString == b.blabString && a.time == b.time
+    return a.username == b.username && a.blabString == b.blabString && a.timeStamp == b.timeStamp
 }
 
 let user = "Nagoogin"
@@ -82,7 +82,7 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             // Saves the time of blab submission
             let username = user
             let currentTime = NSDate()
-            let newBlab = Blab(username: username, blabString: blabTextField.text!, time: currentTime)
+            let newBlab = Blab(username: username, blabString: blabTextField.text!, timeStamp: currentTime)
             // Appends a new Blab object to the blabList array
             blabList.insert(newBlab, atIndex: 0)
             userBlabList.insert(newBlab, atIndex: 0)
@@ -121,7 +121,6 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        print("hello")
         // Need to add call to function that retrieves newest blabs from database
         
         self.blabTableView.reloadData()
@@ -165,7 +164,7 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         
-        blabbedCell.timeStampLabel.text = updateTimeStamp(blabList[indexPath.row].time)
+        blabbedCell.timeStampLabel.text = updateTimeStamp(blabList[indexPath.row].timeStamp!)
         
         return blabbedCell
     }
