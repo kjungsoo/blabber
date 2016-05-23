@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6392BF291CF2E0EE00581BDB /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6392BF281CF2E0EE00581BDB /* Firebase.framework */; };
+		6392BF2B1CF2E20700581BDB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6392BF2A1CF2E20700581BDB /* libicucore.tbd */; };
+		6392BF2D1CF2E21000581BDB /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6392BF2C1CF2E21000581BDB /* libc++.tbd */; };
+		6392BF2F1CF2E21900581BDB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6392BF2E1CF2E21900581BDB /* CFNetwork.framework */; };
+		6392BF311CF2E22000581BDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6392BF301CF2E22000581BDB /* Security.framework */; };
+		6392BF331CF2E22800581BDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6392BF321CF2E22800581BDB /* SystemConfiguration.framework */; };
 		9D97699A1CE54B76000A7EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9769991CE54B76000A7EE8 /* AppDelegate.swift */; };
 		9D97699C1CE54B76000A7EE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D97699B1CE54B76000A7EE8 /* ViewController.swift */; };
 		9D97699F1CE54B76000A7EE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D97699D1CE54B76000A7EE8 /* Main.storyboard */; };
@@ -23,6 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6392BF281CF2E0EE00581BDB /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		6392BF2A1CF2E20700581BDB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		6392BF2C1CF2E21000581BDB /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		6392BF2E1CF2E21900581BDB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6392BF301CF2E22000581BDB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6392BF321CF2E22800581BDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6392BF341CF2E2C000581BDB /* Blurb-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Blurb-Bridging-Header.h"; sourceTree = "<group>"; };
 		9D9769961CE54B76000A7EE8 /* Blurb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blurb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D9769991CE54B76000A7EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D97699B1CE54B76000A7EE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +58,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6392BF331CF2E22800581BDB /* SystemConfiguration.framework in Frameworks */,
+				6392BF311CF2E22000581BDB /* Security.framework in Frameworks */,
+				6392BF2F1CF2E21900581BDB /* CFNetwork.framework in Frameworks */,
+				6392BF2D1CF2E21000581BDB /* libc++.tbd in Frameworks */,
+				6392BF2B1CF2E20700581BDB /* libicucore.tbd in Frameworks */,
+				6392BF291CF2E0EE00581BDB /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +73,11 @@
 		9D97698D1CE54B76000A7EE8 = {
 			isa = PBXGroup;
 			children = (
+				6392BF321CF2E22800581BDB /* SystemConfiguration.framework */,
+				6392BF301CF2E22000581BDB /* Security.framework */,
+				6392BF2E1CF2E21900581BDB /* CFNetwork.framework */,
+				6392BF2C1CF2E21000581BDB /* libc++.tbd */,
+				6392BF2A1CF2E20700581BDB /* libicucore.tbd */,
 				9D9769981CE54B76000A7EE8 /* Blurb */,
 				9D9769971CE54B76000A7EE8 /* Products */,
 			);
@@ -70,6 +94,7 @@
 		9D9769981CE54B76000A7EE8 /* Blurb */ = {
 			isa = PBXGroup;
 			children = (
+				6392BF281CF2E0EE00581BDB /* Firebase.framework */,
 				9D97699D1CE54B76000A7EE8 /* Main.storyboard */,
 				9D9769991CE54B76000A7EE8 /* AppDelegate.swift */,
 				9DF5A2E71CEE97A800D0FBE8 /* Globals.swift */,
@@ -84,6 +109,7 @@
 				9D9769A51CE54B76000A7EE8 /* LaunchScreen.storyboard */,
 				9D9769A81CE54B76000A7EE8 /* Info.plist */,
 				9D9769A01CE54B76000A7EE8 /* Blurb.xcdatamodeld */,
+				6392BF341CF2E2C000581BDB /* Blurb-Bridging-Header.h */,
 			);
 			path = Blurb;
 			sourceTree = "<group>";
@@ -282,13 +308,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Blurb",
+				);
 				INFOPLIST_FILE = Blurb/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KevinNguyen.Blurb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Blurb/Blurb-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -296,13 +330,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Blurb",
+				);
 				INFOPLIST_FILE = Blurb/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KevinNguyen.Blurb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Blurb/Blurb-Bridging-Header.h";
 			};
 			name = Release;
 		};

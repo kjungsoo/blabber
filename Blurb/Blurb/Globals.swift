@@ -1,5 +1,7 @@
 import Foundation
 
+let ref = Firebase(url: "https://blurp.firebaseio.com")
+
 // Blab struct defined a blab: blabString, timeStamp,
 class Blab {
     var username : String?
