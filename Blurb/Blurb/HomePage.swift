@@ -110,6 +110,9 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         blurbButton.layer.cornerRadius = 5
         
+        refreshControl.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        refreshControl.tintColor = UIColor(red:0.0, green:0.545, blue:0.271, alpha:1.0)
+        
         self.refreshControl.addTarget(self, action: #selector(HomePage.handleRefresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
 
         self.blabTableView.addSubview(self.refreshControl)
@@ -162,7 +165,6 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             blabbedCell.backgroundColor = UIColor.whiteColor()
         }
-
         
         blabbedCell.timeStampLabel.text = updateTimeStamp(blabList[indexPath.row].timeStamp!)
         
