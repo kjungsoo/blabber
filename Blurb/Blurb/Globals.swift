@@ -55,7 +55,7 @@ class Digraph {
 }
 
 func == (a: Blab, b: Blab) -> Bool {
-    return a.username == b.username && a.blabString == b.blabString && a.time == b.time
+    return a.username == b.username && a.blabString == b.blabString && a.timeStamp == b.timeStamp
 }
 
 let date1 = NSDate(timeIntervalSinceNow: -500.0)
