@@ -89,7 +89,7 @@ class BlabTree {
                 if blab == parent {
                     let newEdge = Edge()
                     newEdge.neighbor = neighbor
-                    newEdge.weight = myGraph.getWeight(neighbor) // Need to implement a path algorithm
+                    newEdge.weight = self.getWeight(neighbor) // Need to implement a path algorithm
                     influence += newEdge.weight
                     blab.neighbors.append(newEdge)
                     

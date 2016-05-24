@@ -8,13 +8,13 @@
 
 import UIKit
 
-func == (a: Blab, b: Blab) -> Bool {
-    return a.username == b.username && a.blabString == b.blabString && a.timeStamp == b.timeStamp
-}
-
-let user = "Nagoogin"
+let prof = "Nagoogin"
 
 class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    let ref = Firebase(url: "https://blurb.firebaseio.com")
+    
+    var user: User!
     
     @IBOutlet weak var blabTextField: UITextField!
     
@@ -80,9 +80,9 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func blabButtonAction(sender: AnyObject) {
         if (blabTextField.text != "") {
             // Saves the time of blab submission
-            let username = user
+            let profileName = prof
             let currentTime = NSDate()
-            let newBlab = Blab(username: username, blabString: blabTextField.text!, timeStamp: currentTime)
+            let newBlab = Blab(profileName: profileName, blabString: blabTextField.text!, parent: nil, timeStamp: currentTime)
             // Appends a new Blab object to the blabList array
             blabList.insert(newBlab, atIndex: 0)
             userBlabList.insert(newBlab, atIndex: 0)
@@ -123,6 +123,17 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         view.addGestureRecognizer(tap)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        ref.observeAuthEventWithBlock { authData in
+            if authData != nil {
+                self.user = User(authData: authData)
+            }
+        }
+        
+    }
+    
     func handleRefresh(refreshControl: UIRefreshControl) {
         // Need to add call to function that retrieves newest blabs from database
         
@@ -146,10 +157,10 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let blabbedCell = self.blabTableView.dequeueReusableCellWithIdentifier("bCell", forIndexPath: indexPath) as! blabCell
         
-        blabbedCell.usernameLabel.text = blabList[indexPath.row].username
+        blabbedCell.usernameLabel.text = blabList[indexPath.row].profileName
         blabbedCell.blabLabel.text = blabList[indexPath.row].blabString
         
-        if blabList[indexPath.row].username == user {
+        if blabList[indexPath.row].profileName == prof {
             // If you are the poster, then the text of the blab is in medium weight and app green
             blabbedCell.blabLabel.textColor = UIColor(red:0.0, green:0.545, blue:0.271, alpha:1.0)
             blabbedCell.blabLabel.font = UIFont(name: "AvenirNext-Medium", size: 14.0)
@@ -160,13 +171,13 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         // Checks if cell is the first of the user's blabs, then highlight it in green. It's too bad this control flow block has to be separate from the one above because otherwise it won't exhaustively check all the cells.
         
-        if blabList[indexPath.row] == userBlabList[0] {
-            blabbedCell.backgroundColor = UIColor(red: 0.867, green: 0.988, blue: 0.867, alpha: 1.0)
-        } else {
-            blabbedCell.backgroundColor = UIColor.whiteColor()
-        }
+//        if blabList[indexPath.row] == userBlabList[0] {
+//            blabbedCell.backgroundColor = UIColor(red: 0.867, green: 0.988, blue: 0.867, alpha: 1.0)
+//        } else {
+//            blabbedCell.backgroundColor = UIColor.whiteColor()
+//        }
         
-        blabbedCell.timeStampLabel.text = updateTimeStamp(blabList[indexPath.row].timeStamp!)
+        blabbedCell.timeStampLabel.text = updateTimeStamp(blabList[indexPath.row].timeStamp)
         
         return blabbedCell
     }
