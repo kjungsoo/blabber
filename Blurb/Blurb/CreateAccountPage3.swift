@@ -7,27 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateAccountPage3: UIViewController {
-    
-    @IBAction func signUpButtonAction(sender: AnyObject) {
-//        BASE_REF.createUser(emailField.text!, password: passwordField.text!, withValueCompletionBlock: { (error, result) in
-//            if (self.emailChecked == true && self.legalPwChecked == true && self.passwordChecked == true) {
-//                if error == nil {
-//                    let uid = result["uid"] as! String
-//                    let user = ["username" : self.usernameField.text!, "bio" : ""]
-//                    BASE_REF.childByAppendingPath("users/\(uid)").setValue(user)
-//                    print("Successfully created a user with uid: \(uid)")
-//                } else {
-//                    print("ERROR: Sign up error")
-//                    //couldn't access firebase, bad internet; resulted in error -> provide red warning messages to user!
-//                }
-//            }
-//            else {
-//                //add red warning message telling user to fulfill everything
-//            }
-//        })
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +30,6 @@ class CreateAccountPage3: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func unindToLogin(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {}
     
 }

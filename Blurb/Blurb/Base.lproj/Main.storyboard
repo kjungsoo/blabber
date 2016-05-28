@@ -611,6 +611,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJ9-fj-kul">
+                                <rect key="frame" x="180" y="174" width="250" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="GKb-kB-LeA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYv-Ap-jHG">
+                                <rect key="frame" x="162" y="375" width="290" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="7sA-se-DuX"/>
+                                    <constraint firstAttribute="height" constant="23" id="S1j-Rz-6FX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fFC-d8-Hxw">
                                 <rect key="frame" x="175" y="60" width="250" height="30"/>
                                 <constraints>
@@ -644,7 +661,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
-                                    <action selector="confirmEmailCheck:" destination="ZQa-5q-ctm" eventType="editingDidEnd" id="URm-oX-03B"/>
+                                    <action selector="confirmEmailCheck:" destination="ZQa-5q-ctm" eventType="editingChanged" id="VwU-30-IP5"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TN7-PU-K2O">
@@ -668,7 +685,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <connections>
-                                    <action selector="confirmPwCheck:" destination="ZQa-5q-ctm" eventType="editingChanged" id="bpG-mC-gdZ"/>
+                                    <action selector="confirmPwCheck:" destination="ZQa-5q-ctm" eventType="editingDidEnd" id="cvf-nA-33q"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ni6-wc-dsY">
@@ -689,7 +706,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="signUpButtonAction:" destination="ZQa-5q-ctm" eventType="touchUpInside" id="9s3-MX-OHt"/>
-                                    <segue destination="Z0h-0X-apP" kind="unwind" unwindAction="unwindCreateAccountPage:" id="84m-PC-sWU"/>
+                                    <segue destination="NT4-1s-0On" kind="show" id="p6i-jn-CfL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1h-Kr-Sdi">
@@ -712,14 +729,6 @@
                                     <segue destination="Z0h-0X-apP" kind="unwind" unwindAction="unwindCreateAccountPage:" id="NKK-dD-E8d"/>
                                 </connections>
                             </button>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJ9-fj-kul">
-                                <rect key="frame" x="180" y="174" width="250" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="GKb-kB-LeA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -730,6 +739,7 @@
                             <constraint firstAttribute="trailing" secondItem="ni6-wc-dsY" secondAttribute="trailing" id="6uh-A7-aTS"/>
                             <constraint firstAttribute="trailing" secondItem="T1h-Kr-Sdi" secondAttribute="trailing" id="71g-CL-KXU"/>
                             <constraint firstItem="TN7-PU-K2O" firstAttribute="centerX" secondItem="Xcx-SJ-rPF" secondAttribute="centerX" id="7Oo-xX-Rmw"/>
+                            <constraint firstItem="bYv-Ap-jHG" firstAttribute="top" secondItem="TN7-PU-K2O" secondAttribute="bottom" constant="26" id="8gz-FD-MKr"/>
                             <constraint firstItem="T1h-Kr-Sdi" firstAttribute="leading" secondItem="Xcx-SJ-rPF" secondAttribute="leading" id="CtN-w1-e2o"/>
                             <constraint firstAttribute="bottom" secondItem="T1h-Kr-Sdi" secondAttribute="bottom" id="EWb-ez-pO5"/>
                             <constraint firstItem="Why-uR-TQO" firstAttribute="centerX" secondItem="Xcx-SJ-rPF" secondAttribute="centerX" id="FOt-6m-evm"/>
@@ -754,6 +764,8 @@
                             <constraint firstItem="T1h-Kr-Sdi" firstAttribute="top" secondItem="ni6-wc-dsY" secondAttribute="bottom" constant="10" id="ecx-zM-kLd"/>
                             <constraint firstItem="wp9-QA-Z4h" firstAttribute="top" secondItem="TN7-PU-K2O" secondAttribute="bottom" constant="49" id="f7T-pw-gdH"/>
                             <constraint firstItem="b61-T1-6Gg" firstAttribute="centerX" secondItem="Xcx-SJ-rPF" secondAttribute="centerX" constant="5" id="goo-bt-eEp"/>
+                            <constraint firstItem="bYv-Ap-jHG" firstAttribute="centerX" secondItem="Xcx-SJ-rPF" secondAttribute="centerX" constant="7" id="h2O-bM-tgq"/>
+                            <constraint firstItem="wp9-QA-Z4h" firstAttribute="top" secondItem="bYv-Ap-jHG" secondAttribute="bottom" id="jyz-xi-5GJ"/>
                             <constraint firstItem="1py-kK-dsW" firstAttribute="top" secondItem="2ad-dc-IP4" secondAttribute="bottom" constant="334" id="lRT-2h-lGs"/>
                             <constraint firstItem="T1h-Kr-Sdi" firstAttribute="top" secondItem="ni6-wc-dsY" secondAttribute="bottom" id="m5T-jz-6OZ"/>
                             <constraint firstItem="zFm-sJ-Ocp" firstAttribute="centerX" secondItem="Xcx-SJ-rPF" secondAttribute="centerX" id="nNr-4W-47h"/>
@@ -785,6 +797,7 @@
                         <outlet property="emailReqErrorMessage" destination="RJ9-fj-kul" id="opD-Be-3v1"/>
                         <outlet property="passwordField" destination="TN7-PU-K2O" id="wLS-9L-6tt"/>
                         <outlet property="pwErrorMessage" destination="1Rd-X3-XcG" id="Ic9-FQ-Nls"/>
+                        <outlet property="pwReq2ErrorMessage" destination="bYv-Ap-jHG" id="pwc-8o-5wH"/>
                         <outlet property="pwReq2Field" destination="78O-hm-gux" id="8WR-me-XjE"/>
                         <outlet property="pwReqErrorMessage" destination="b61-T1-6Gg" id="Dih-EY-N37"/>
                         <outlet property="pwReqField" destination="zFm-sJ-Ocp" id="KsN-6A-lem"/>
@@ -912,7 +925,7 @@
                                     <constraint firstAttribute="height" constant="50" id="7eY-kr-hKP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Sign Up">
+                                <state key="normal" title="Finish">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
@@ -921,8 +934,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="signUpButtonAction:" destination="DhK-2a-fsQ" eventType="touchUpInside" id="YZK-KS-D2n"/>
-                                    <segue destination="IIx-cO-ssd" kind="unwind" unwindAction="unindToLogin:" id="fyE-8p-L6O"/>
+                                    <segue destination="IIx-cO-ssd" kind="unwind" unwindAction="unwindToLogin:" id="qee-Df-mTK"/>
                                 </connections>
                             </button>
                         </subviews>

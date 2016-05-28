@@ -36,10 +36,24 @@ class CreateAccountPage: UIViewController {
         }
     }
     
+    func confirmLengthInput(input: Int, user: Bool) throws {
+        
+        if input < 4 && user == true {
+            throw dataReaderError.lengthUnder
+        }
+        else if input < 8 && user == false {
+            throw dataReaderError.lengthUnder
+        }
+        else if input > 16 {
+            throw dataReaderError.lengthOver
+        }
+    }
+    
     @IBOutlet weak var emailErrorMessage: UITextView!
     @IBOutlet weak var emailReqErrorMessage: UITextView!
     @IBOutlet weak var pwErrorMessage: UITextView!
     @IBOutlet weak var pwReqErrorMessage: UITextView!
+    @IBOutlet weak var pwReq2ErrorMessage: UITextView!
     
     @IBOutlet weak var usernameField: UITextField!
     
@@ -126,6 +140,7 @@ class CreateAccountPage: UIViewController {
         
         let digits = NSCharacterSet.decimalDigitCharacterSet()
         
+        let lengthCount = test.characters.count
         var digitCount = 0
         
         for uni in test.unicodeScalars {
@@ -146,10 +161,9 @@ class CreateAccountPage: UIViewController {
         if errorMessage != "" {
             pwReqField.hidden = true
             pwReqErrorMessage.text = errorMessage
-            //pwReqErrorMessage.sizeToFit()
             pwReqErrorMessage.textColor = UIColor.redColor()
             pwReqErrorMessage.hidden = false
-            
+            legalPwChecked = false
         }
         else {
             pwReqErrorMessage.hidden = true
@@ -157,6 +171,31 @@ class CreateAccountPage: UIViewController {
             legalPwChecked = true
         }
         
+        var errorMessage2: String = ""
+        
+        do {
+            try confirmLengthInput(lengthCount, user: false)
+        } catch dataReaderError.lengthUnder { //if lengthUnder, error textview is too shifted to left, ugly af. o well
+            errorMessage2 = "Your password must have at least 8 characters."
+        } catch dataReaderError.lengthOver {
+            errorMessage2 = "Your password cannot be longer than 16 characters."
+        } catch {
+            errorMessage2 = "Check failed"
+        }
+        if errorMessage2 != "" {
+            pwReq2Field.hidden = true
+            pwReq2ErrorMessage.text = errorMessage2
+            pwReq2ErrorMessage.textColor = UIColor.redColor()
+            pwReq2ErrorMessage.hidden = false
+            legalPwChecked = false
+        }
+        else {
+            pwReq2ErrorMessage.hidden = true
+            pwReq2Field.hidden = false
+            legalPwChecked = true
+        }
+        
+        //annoying stuff below
         if passwordField.text == confirmPwField.text {
             pwErrorMessage.hidden = true
         }
