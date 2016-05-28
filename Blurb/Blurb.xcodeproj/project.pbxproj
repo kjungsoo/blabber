@@ -13,6 +13,8 @@
 		6392BF2F1CF2E21900581BDB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6392BF2E1CF2E21900581BDB /* CFNetwork.framework */; };
 		6392BF311CF2E22000581BDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6392BF301CF2E22000581BDB /* Security.framework */; };
 		6392BF331CF2E22800581BDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6392BF321CF2E22800581BDB /* SystemConfiguration.framework */; };
+		63F5FCCC1CF9B79300565328 /* CreateAccountPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5FCCB1CF9B79300565328 /* CreateAccountPage2.swift */; };
+		63F5FCCE1CF9B86700565328 /* CreateAccountPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5FCCD1CF9B86700565328 /* CreateAccountPage3.swift */; };
 		9D0E8AA21CF3B7FF00364B7F /* ReactionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0E8AA11CF3B7FF00364B7F /* ReactionPage.swift */; };
 		9D83A2E81CF4DDA2001C69BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D83A2E71CF4DDA2001C69BB /* Constants.swift */; };
 		9D97699A1CE54B76000A7EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9769991CE54B76000A7EE8 /* AppDelegate.swift */; };
@@ -38,6 +40,8 @@
 		6392BF301CF2E22000581BDB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6392BF321CF2E22800581BDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6392BF341CF2E2C000581BDB /* Blurb-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Blurb-Bridging-Header.h"; sourceTree = "<group>"; };
+		63F5FCCB1CF9B79300565328 /* CreateAccountPage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountPage2.swift; sourceTree = "<group>"; };
+		63F5FCCD1CF9B86700565328 /* CreateAccountPage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountPage3.swift; sourceTree = "<group>"; };
 		9D0E8AA11CF3B7FF00364B7F /* ReactionPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionPage.swift; sourceTree = "<group>"; };
 		9D83A2E71CF4DDA2001C69BB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9D9769961CE54B76000A7EE8 /* Blurb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blurb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +121,8 @@
 			children = (
 				9D9769B61CE5A815000A7EE8 /* LoginPage.swift */,
 				9DDE81AC1CF6D28E00F38DAD /* CreateAccountPage.swift */,
+				63F5FCCB1CF9B79300565328 /* CreateAccountPage2.swift */,
+				63F5FCCD1CF9B86700565328 /* CreateAccountPage3.swift */,
 				9D9769AE1CE54FD9000A7EE8 /* HomePage.swift */,
 				9D0E8AA11CF3B7FF00364B7F /* ReactionPage.swift */,
 				9D9769B01CE5562D000A7EE8 /* ExplorePage.swift */,
@@ -231,6 +237,8 @@
 				9DDE81AD1CF6D28E00F38DAD /* CreateAccountPage.swift in Sources */,
 				9D9769A21CE54B76000A7EE8 /* Blurb.xcdatamodeld in Sources */,
 				9D97699A1CE54B76000A7EE8 /* AppDelegate.swift in Sources */,
+				63F5FCCC1CF9B79300565328 /* CreateAccountPage2.swift in Sources */,
+				63F5FCCE1CF9B86700565328 /* CreateAccountPage3.swift in Sources */,
 				9D9769B51CE55732000A7EE8 /* ProfilePage.swift in Sources */,
 				9D9769B11CE5562D000A7EE8 /* ExplorePage.swift in Sources */,
 				9D9769AF1CE54FD9000A7EE8 /* HomePage.swift in Sources */,

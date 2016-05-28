@@ -7,14 +7,22 @@
 //
 
 import UIKit
-import Firebase
+//import Firebase
 
 enum dataReaderError: ErrorType {
     case mismatch
     case forbidden
+    case lengthOver
+    case lengthUnder
 }
 
 class CreateAccountPage: UIViewController {
+    
+    var userChecked: Bool = false
+    var legalEmailChecked: Bool = false
+    var emailChecked: Bool = false
+    var legalPwChecked: Bool = false
+    var passwordChecked: Bool = false
     
     func confirmInput(input1: UITextField, input2: UITextField) throws {
         if input1.text! != input2.text! {
@@ -22,57 +30,93 @@ class CreateAccountPage: UIViewController {
         }
     }
     
-    func confirmLegalPwInput(input: Int) throws {
+    func confirmLegalInput(input: Int) throws {
         if input < 2 {
             throw dataReaderError.forbidden
         }
     }
     
-    var userChecked: Bool = false
-    var legalPwChecked: Bool = false
-    var passwordChecked: Bool = false
-    
     @IBOutlet weak var emailErrorMessage: UITextView!
+    @IBOutlet weak var emailReqErrorMessage: UITextView!
     @IBOutlet weak var pwErrorMessage: UITextView!
+    @IBOutlet weak var pwReqErrorMessage: UITextView!
     
     @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet weak var emailField: UITextField!
-    
     @IBOutlet weak var confirmEmailField: UITextField!
     
     @IBOutlet weak var passwordField: UITextField!
-    
     @IBOutlet weak var confirmPwField: UITextField!
+    
+    @IBOutlet weak var pwReqField: UITextView!
+    @IBOutlet weak var pwReq2Field: UITextView!
     
     @IBOutlet weak var signUpButton: UIButton!
     
-    @IBAction func emailCheck(sender: AnyObject) {
-        
+    @IBAction func usernameCheck(sender: AnyObject) {
+        //check for hate lang
+        //check for length 4-16 characters
+        //no special character allowed
+        //no white spaces
     }
     
-    @IBAction func confirmAccCheck(sender: AnyObject) {
+    @IBAction func emailCheck(sender: AnyObject) {
+        
+        let validEmailtest = emailField.text! as String
+        
+        var validEmailcount = 0
+        
+        for uni in validEmailtest.unicodeScalars {
+            if uni.value == 64 { // @ == 64
+                validEmailcount += 1
+            }
+            if uni.value == 46 { // . == 46
+                validEmailcount += 1
+            }
+        }
         
         var errorMessage: String = ""
         
-        if emailField.text != confirmEmailField.text {
-            do {
-                try confirmInput(emailField, input2: confirmEmailField)
-            } catch dataReaderError.mismatch {
-                errorMessage = "Entered e-mails do not match."
-            } catch {
-                errorMessage = "Check failed"
-            }
-            if errorMessage != "" {
-                emailErrorMessage.text = errorMessage
-                //emailErrorMessage.textAlignment = NSTextAlignment.Center
-                emailErrorMessage.textColor = UIColor.redColor()
-                emailErrorMessage.hidden = false
-            }
+        do {
+            try confirmLegalInput(validEmailcount)
+        } catch dataReaderError.forbidden {
+            errorMessage = "The e-mail address you entered is invalid."
+        } catch {
+            errorMessage = "Check failed"
+        }
+        if errorMessage != "" {
+            emailReqErrorMessage.text = errorMessage
+            emailReqErrorMessage.textColor = UIColor.redColor()
+            emailReqErrorMessage.hidden = false
+            
+        }
+        else {
+            emailReqErrorMessage.hidden = true
+            legalEmailChecked = true
+        }
+        
+    }
+    
+    @IBAction func confirmEmailCheck(sender: AnyObject) {
+        
+        var errorMessage: String = ""
+        
+        do {
+            try confirmInput(emailField, input2: confirmEmailField)
+        } catch dataReaderError.mismatch {
+            errorMessage = "Entered e-mails do not match."
+        } catch {
+            errorMessage = "Check failed"
+        }
+        if errorMessage != "" {
+            emailErrorMessage.text = errorMessage
+            emailErrorMessage.textColor = UIColor.redColor()
+            emailErrorMessage.hidden = false
         }
         else {
             emailErrorMessage.hidden = true
-            userChecked = true
+            emailChecked = true
         }
     }
     
@@ -93,14 +137,37 @@ class CreateAccountPage: UIViewController {
         var errorMessage: String = ""
         
         do {
-            try confirmLegalPwInput(digitCount)
+            try confirmLegalInput(digitCount)
         } catch dataReaderError.forbidden {
             errorMessage = "Your password must include at least 2 numbers"
         } catch {
             errorMessage = "Check failed"
         }
         if errorMessage != "" {
+            pwReqField.hidden = true
+            pwReqErrorMessage.text = errorMessage
+            //pwReqErrorMessage.sizeToFit()
+            pwReqErrorMessage.textColor = UIColor.redColor()
+            pwReqErrorMessage.hidden = false
             
+        }
+        else {
+            pwReqErrorMessage.hidden = true
+            pwReqField.hidden = false
+            legalPwChecked = true
+        }
+        
+        if passwordField.text == confirmPwField.text {
+            pwErrorMessage.hidden = true
+        }
+        
+        if passwordField.text == "" {
+            pwReqErrorMessage.hidden = true
+            pwReqField.hidden = false
+        }
+        
+        if passwordField.text != confirmPwField.text && confirmPwField.text != "" {
+            pwErrorMessage.hidden = false
         }
         
     }
@@ -109,20 +176,19 @@ class CreateAccountPage: UIViewController {
         
         var errorMessage: String = ""
         
-        if passwordField.text != confirmPwField.text {
-            do {
-                try confirmInput(passwordField, input2: confirmPwField)
-            } catch dataReaderError.mismatch {
-                errorMessage = "Entered passwords do not match"
-            } catch {
-                errorMessage = "Check failed"
-            }
-            if errorMessage != "" {
-                pwErrorMessage.text = errorMessage
-                pwErrorMessage.textColor = UIColor.redColor()
-                pwErrorMessage.hidden = false
-            }
+        do {
+            try confirmInput(passwordField, input2: confirmPwField)
+        } catch dataReaderError.mismatch {
+            errorMessage = "Entered passwords do not match"
+        } catch {
+            errorMessage = "Check failed"
         }
+        if errorMessage != "" {
+            pwErrorMessage.text = errorMessage
+            pwErrorMessage.textColor = UIColor.redColor()
+            pwErrorMessage.hidden = false
+        }
+            
         else {
             pwErrorMessage.hidden = true
             passwordChecked = true
@@ -132,13 +198,19 @@ class CreateAccountPage: UIViewController {
     
     @IBAction func signUpButtonAction(sender: AnyObject) {
         BASE_REF.createUser(emailField.text!, password: passwordField.text!, withValueCompletionBlock: { (error, result) in
-            if error == nil {
-                let uid = result["uid"] as! String
-                let user = ["username" : self.usernameField.text!, "bio" : ""]
-                BASE_REF.childByAppendingPath("users/\(uid)").setValue(user)
-                print("Successfully created a user with uid: \(uid)")
-            } else {
-                print("ERROR: Sign up error")
+            if (self.emailChecked == true && self.legalPwChecked == true && self.passwordChecked == true) {
+                if error == nil {
+                    let uid = result["uid"] as! String
+                    let user = ["username" : self.usernameField.text!, "bio" : ""]
+                    BASE_REF.childByAppendingPath("users/\(uid)").setValue(user)
+                    print("Successfully created a user with uid: \(uid)")
+                } else {
+                    print("ERROR: Sign up error")
+                    //couldn't access firebase, bad internet; resulted in error -> provide red warning messages to user!
+                }
+            }
+            else {
+                //add red warning message telling user to fulfill everything
             }
         })
     }
@@ -146,12 +218,20 @@ class CreateAccountPage: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateAccountPage.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 var baseURL = "https://blurb.firebaseio.com"
 var BASE_REF = Firebase(url: baseURL)
