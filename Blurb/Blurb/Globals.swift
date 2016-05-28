@@ -66,6 +66,7 @@ class BlabTree {
         return newBlab
     }
     
+// Returns the sum of all the weights in the graph
     func getWeight(blab: Blab) -> Int {
         var focusBlab: Blab = blab
         var length: Int = 0
@@ -107,6 +108,7 @@ class BlabTree {
         }
     }
     
+// Graph traversal functions
     func traverseBFS(source: Blab) {
         var blabQueue : [Blab] = [Blab]()
         blabQueue.append(source)
@@ -139,6 +141,7 @@ let date2 = NSDate(timeIntervalSinceNow: -3800.0)
 let date3 = NSDate(timeIntervalSinceNow: -467000.0)
 let date4 = NSDate(timeIntervalSinceNow: -724120.0)
 
+// Should be done in the home feed upon posting a blab, as well as in the reply mechanism
 let testBlab1 = Blab(profileName: "Stine", blabString: "Can we go to Grizzly Peak?", parent: nil, timeStamp: date1)
 
 let testBlab2 = Blab(profileName: "Nagoogin", blabString: "It smells like asparagus piss", parent: nil, timeStamp: date2)

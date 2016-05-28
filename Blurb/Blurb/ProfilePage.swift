@@ -11,11 +11,44 @@ import UIKit
 class ProfilePage: UIViewController {
     
     @IBOutlet weak var profilePageNavBar: UINavigationBar!
+
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    @IBOutlet weak var bioLabel: UILabel!
+    
+    @IBOutlet weak var bioTextField: UITextField!
+    
+    @IBAction func editBioAction(sender: AnyObject) {
+        if BASE_REF.authData != nil {
+            let userRef = BASE_REF.childByAppendingPath("users").childByAppendingPath(BASE_REF.authData.uid)
+            if bioTextField.text != "" {
+                userRef.updateChildValues(["bio": bioTextField.text!])
+            }
+            print(userRef)
+        } else {
+            print("no user signed in")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profilePageNavBar.topItem!.title = "Profile"
         // Do any additional setup after loading the view, typically from a nib.
+        profilePageNavBar.topItem!.title = "Profile"
+        
+        if BASE_REF.authData != nil {
+            let userRef = BASE_REF.childByAppendingPath("users").childByAppendingPath(BASE_REF.authData.uid)
+            print(userRef)
+            userRef.observeEventType(.Value, withBlock: { snapshot in
+                print(snapshot.value)
+                self.usernameLabel.text = (snapshot.value.objectForKey("username") as! String)
+                self.bioLabel.text = (snapshot.value.objectForKey("bio") as! String)
+                }, withCancelBlock: { error in
+                    print(error.description)
+            })
+        } else {
+            print("no user signed in")
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

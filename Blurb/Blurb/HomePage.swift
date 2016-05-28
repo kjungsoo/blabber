@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 let prof = "Nagoogin"
 
-class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     let ref = Firebase(url: "https://blurb.firebaseio.com")
+//    let locationManager = CLLocationManager()
     
     var user: User!
     
@@ -77,6 +79,7 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return timeStamp
     }
     
+// Blab button did touch action
     @IBAction func blabButtonAction(sender: AnyObject) {
         if (blabTextField.text != "") {
             // Saves the time of blab submission
@@ -110,6 +113,12 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         blurbButton.layer.cornerRadius = 5
         
+        // Sets up the location manager
+//        self.locationManager.delegate = self
+//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        self.locationManager.requestWhenInUseAuthorization()
+//        self.locationManager.startUpdatingLocation()
+        
         refreshControl.backgroundColor = UIColor.groupTableViewBackgroundColor()
         refreshControl.tintColor = UIColor(red:0.0, green:0.545, blue:0.271, alpha:1.0)
         
@@ -132,6 +141,31 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         
+    }
+    
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: { (placemarks, error) -> Void in
+//            if error != nil {
+//                print(error!.localizedDescription)
+//                return
+//            }
+//            if placemarks!.count > 0 {
+//                let placemark = placemarks![0]
+//                self.displayLocationInfo(placemark)
+//            }
+//        })
+//    }
+//    
+//    func displayLocationInfo(placemark: CLPlacemark) {
+//        self.locationManager.stopUpdatingLocation()
+//        print(placemark.locality!)
+//        print(placemark.postalCode!)
+//        print(placemark.administrativeArea!)
+//        print(placemark.country!)
+//    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error.localizedDescription)
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {

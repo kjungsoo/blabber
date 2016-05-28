@@ -16,19 +16,6 @@ class blabCell: UITableViewCell {
     
     @IBOutlet weak var usernameLabel: UILabel!
     
-    @IBOutlet weak var subBlabButton: UIButton!
-    
-    @IBAction func subBlabButtonAction(sender: AnyObject) {
-        print("Hi")
-    }
-    
-    @IBOutlet weak var influenceButton: UIButton!
-    
-    @IBAction func influenceButtonAction(sender: AnyObject) {
-        print("Yo")
-    }
-
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
