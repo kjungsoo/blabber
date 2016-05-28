@@ -10,55 +10,35 @@ import UIKit
 
 class LoginPage: UIViewController {
     
-    let ref = Firebase(url: "https://blurb.firebaseio.com")
-    
-    let loginToApp: String = "loginToApp"
-
     @IBOutlet weak var emailField: UITextField!
     
     @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var createAccountButton: UIButton!
+    
     @IBAction func loginButtonAction(sender: AnyObject) {
-        self.ref.authUser(emailField.text, password: passwordField.text, withCompletionBlock: { (error, auth) in })
+        BASE_REF.authUser(emailField.text!, password: passwordField.text!, withCompletionBlock: { (error, authData) in
+            if error == nil {
+                let uid = authData.uid
+                self.performSegueWithIdentifier("loginSegue", sender: nil)
+                print("Login successful with uid: \(uid)")
+            } else {
+                print("ERROR: Unable to sign in user")
+            }
+        })
         
     }
     
-    
-    @IBOutlet weak var signUpButton: UIButton!
-    
-    @IBAction func signUpButtonAction(sender: AnyObject) {
-        
-        self.ref.createUser(emailField.text, password: passwordField.text) { (error: NSError!) in
-            if error == nil {
-                self.ref.authUser(self.emailField.text, password: self.passwordField.text,
-                                  withCompletionBlock: { (error, auth) -> Void in
-                })
-            }
-        }
+    @IBAction func unwindCreateAccountPage(segue: UIStoryboardSegue) {
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loginButton.layer.cornerRadius = 5
-        
-        signUpButton.layer.cornerRadius = 5
     
         // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        ref.observeAuthEventWithBlock { (authData) -> Void in
-            if authData != nil {
-                self.performSegueWithIdentifier(self.loginToApp, sender: nil)
-            }
-        }
-
     }
     
     override func didReceiveMemoryWarning() {
