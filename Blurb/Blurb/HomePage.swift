@@ -205,11 +205,11 @@ class HomePage: UIViewController, UITableViewDelegate, UITableViewDataSource, CL
         
         // Checks if cell is the first of the user's blabs, then highlight it in green. It's too bad this control flow block has to be separate from the one above because otherwise it won't exhaustively check all the cells.
         
-//        if blabList[indexPath.row] == userBlabList[0] {
-//            blabbedCell.backgroundColor = UIColor(red: 0.867, green: 0.988, blue: 0.867, alpha: 1.0)
-//        } else {
-//            blabbedCell.backgroundColor = UIColor.whiteColor()
-//        }
+        if blabList[indexPath.row] == userBlabList[0] {
+            blabbedCell.backgroundColor = UIColor(red: 0.867, green: 0.988, blue: 0.867, alpha: 1.0)
+        } else {
+            blabbedCell.backgroundColor = UIColor.whiteColor()
+        }
         
         blabbedCell.timeStampLabel.text = updateTimeStamp(blabList[indexPath.row].timeStamp)
         
