@@ -31,9 +31,7 @@ class LoginPage: UIViewController {
         
     }
     
-    @IBAction func unwindCreateAccountPage(segue: UIStoryboardSegue) {
-        
-    }
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()

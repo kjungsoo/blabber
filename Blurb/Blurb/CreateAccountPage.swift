@@ -85,8 +85,8 @@ class CreateAccountPage: UIViewController {
             if uni.value == 64 { // @ == 64
                 validEmailcount += 1
             }
-            if uni.value == 46 { // . == 46
-                validEmailcount += 1
+            if uni.value == 46 { // . == 46 big problem, emails can contain multiple '.'s
+                validEmailcount += 1 //screw checking if email is a valid format and use email activation to validate
             }
         }
         
@@ -244,7 +244,7 @@ class CreateAccountPage: UIViewController {
                     BASE_REF.childByAppendingPath("users/\(uid)").setValue(user)
                     print("Successfully created a user with uid: \(uid)")
                 } else {
-                    print("ERROR: Sign up error")
+                    print("ERROR: Sign up error") //if email is already in use, it doesnt give error, need to create exception handling if email is already in use
                     //couldn't access firebase, bad internet; resulted in error -> provide red warning messages to user!
                 }
             }
